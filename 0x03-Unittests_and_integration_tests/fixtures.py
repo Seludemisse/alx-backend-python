@@ -943,8 +943,17 @@ TEST_PAYLOAD = [
           "pull": True
         }
       }
+      
     ],
     ['episodes.dart', 'cpp-netlib', 'dagger', 'ios-webkit-debug-proxy', 'google.github.io', 'kratu', 'build-debian-cloud', 'traceur-compiler', 'firmata.py'],
     ['dagger', 'kratu', 'traceur-compiler', 'firmata.py'],
   )
 ]
+org_payload = {
+    "login": "google",
+    "id": 123456,
+    "url": "https://api.github.com/orgs/google",
+    "repos_url": "https://api.github.com/orgs/google/repos",
+    "description": "Mock description for testing"
+}
+

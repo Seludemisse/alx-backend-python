@@ -2,9 +2,9 @@
 """Unit tests & Integration tests for client.py"""
 import unittest
 from unittest.mock import patch, PropertyMock
-from parameterized import parameterized, parameterized_class
-
+from parameterized import parameterized,parameterized_class
 from client import GithubOrgClient
+from fixtures import org_payload
 import fixtures
 
 
