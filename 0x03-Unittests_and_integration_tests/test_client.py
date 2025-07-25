@@ -95,10 +95,18 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         client = GithubOrgClient("test_org")
         self.assertEqual(client.public_repos(), self.expected_repos)
 
-    def test_public_repos_with_license(self):
-        """Test public_repos filters repos with apache-2.0 license"""
-        client = GithubOrgClient("test_org")
-        self.assertEqual(
-            client.public_repos(license="apache-2.0"),
-            self.apache2_repos
-        )
+    @patch('client.get_json')
+    def test_public_repos_with_license(self, mock_get_json):
+        # Setup mock responses for calls to get_json
+        mock_get_json.side_effect = [
+            {"repos_url": "https://api.github.com/orgs/testorg/repos"},  # org response
+            [  # repos response
+                {"name": "repo1", "license": {"key": "apache-2.0"}, "private": False},
+                {"name": "repo2", "license": {"key": "mit"}, "private": False},
+            ]
+        ]
+
+        client = GithubOrgClient("testorg")
+        filtered_repos = client.public_repos(license="apache-2.0")
+
+        self.assertEqual(filtered_repos, ["repo1"])

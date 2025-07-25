@@ -956,4 +956,15 @@ org_payload = {
     "repos_url": "https://api.github.com/orgs/google/repos",
     "description": "Mock description for testing"
 }
+repos_payload = [
+    {"id": 1, "name": "repo1", "private": False},
+    {"id": 2, "name": "repo2", "private": True},
+]
 
+expected_repos = ["repo1"]
+
+
+apache2_repos = [
+    {"id": 3, "name": "apache2", "license": {"key": "apache-2.0"}},
+    {"id": 4, "name": "repo-without-license"},
+]
